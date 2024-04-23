@@ -1,5 +1,3 @@
-const dog = document.getElementById('dog');
-const Engine = Matter.Engine;
 const Render = Matter.Render;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -20,30 +18,21 @@ const render = Render.create({
 });
 
 const dogBody = Bodies.rectangle(100, 100, 100, 100, { inertia: Infinity });
-const ceiling = Bodies.rectangle(500, 0, 1000, 50, { isStatic: true });
+
 const rope = Constraint.create({
     bodyA: dogBody,
-    pointB: { x: 500, y: 0 },
-    length: 400,
-    stiffness: 0.2
+    pointA: { x: 0, y: 0 },
+    pointB: { x: window.innerWidth / 2, y: 0 },
+    stiffness: 0.05
 });
 
-const mouse = Mouse.create(render.canvas);
-const mouseConstraint = MouseConstraint.create(engine, {
-    mouse: mouse,
-    constraint: {
-        render: { visible: false }
-    }
-});
-
-World.add(engine.world, [dogBody, ceiling, rope, mouseConstraint]);
-Engine.run(engine);
+World.add(engine.world, [dogBody, rope]);
 Render.run(render);
+Engine.run(engine);
 
-function update() {
-    dog.style.left = dogBody.position.x + 'px';
-    dog.style.top = dogBody.position.y + 'px';
-    requestAnimationFrame(update);
-}
-
-update();
+// Update the position of the rope
+setInterval(function() {
+    const ropeElement = document.getElementById('rope');
+    ropeElement.style.top = dogBody.position.y + 'px';
+    ropeElement.style.left = dogBody.position.x + 'px';
+}, 1000 / 60);
