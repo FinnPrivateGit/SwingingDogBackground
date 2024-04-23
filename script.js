@@ -1,4 +1,6 @@
 const dog = document.getElementById('dog');
+//dog.style.zIndex = 2;
+
 const Engine = Matter.Engine;
 const Render = Matter.Render;
 const World = Matter.World;
@@ -20,6 +22,7 @@ const render = Render.create({
 });
 
 const dogBody = Bodies.rectangle(100, 100, 100, 100, { inertia: Infinity });
+//dogBody.style.zIndex = 3;
 
 // create rope constraint
 const rope = Constraint.create({
@@ -28,6 +31,8 @@ const rope = Constraint.create({
     length: window.innerHeight * 0.5,
     stiffness: 0.15
 });
+
+//rope.style.zIndex = 1;
 
 // Create a MouseConstraint
 const mouse = Mouse.create(render.canvas);
@@ -43,14 +48,26 @@ Render.run(render);
 Engine.run(engine);
 
 function update() {
-    dog.style.left = dogBody.position.x + 'px';
-    dog.style.top = dogBody.position.y + 'px';
+    dog.style.left = dogBody.position.x - 50 + 'px';
+    dog.style.top = dogBody.position.y -50 + 'px';
+
+    const ropeElement = document.getElementById('rope');
+    const deltaY = rope.bodyA.position.y - rope.pointB.y;
+    const deltaX = rope.bodyA.position.x - rope.pointB.x;
+    const angleInDegrees = (Math.atan2(deltaY, deltaX) * 180 / Math.PI) - 90;
+
+    ropeElement.style.height = Math.sqrt(deltaX * deltaX + deltaY * deltaY) + 'px';
+    ropeElement.style.left = (rope.pointB.x - ropeElement.offsetWidth / 2) + 'px';
+    ropeElement.style.top = rope.pointB.y + 'px';
+    ropeElement.style.transformOrigin = "top";
+    ropeElement.style.transform = `rotate(${angleInDegrees}deg)`;
+
     requestAnimationFrame(update);
 }
+
 update();
 
-// Update the position of the dog and the rope
-setInterval(function() {
-    const ropeElement = document.getElementById('rope');
-    ropeElement.style.height = dogBody.position.y + 'px';
-}, 1000 / 60);
+/*
+dog_body is behind dog_png, therefore we cant really click on it
+dog_rope is infront of dog_png, therefore i have to put it behind
+*/
