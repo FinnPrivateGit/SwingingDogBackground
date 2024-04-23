@@ -21,12 +21,12 @@ const render = Render.create({
 
 const dogBody = Bodies.rectangle(100, 100, 100, 100, { inertia: Infinity });
 
-//create rope constraint
+// create rope constraint
 const rope = Constraint.create({
     bodyA: dogBody,
-    pointA: { x: 0, y: 0 },
     pointB: { x: window.innerWidth / 2, y: 0 },
-    stiffness: 0.05
+    length: window.innerHeight * 0.5,
+    stiffness: 0.15
 });
 
 // Create a MouseConstraint
