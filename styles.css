@@ -19,8 +19,8 @@ body {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 10px;
-    height: 100%;
+    width: 5px;
+    height: 42%;
     background-image: url('dog_rope.png');
-    background-size: cover;
+    background-size: cover; /* make rope that it is behind the dog */
 }
