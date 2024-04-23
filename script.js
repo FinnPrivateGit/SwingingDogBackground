@@ -1,5 +1,7 @@
+//now the rope isnt showing at top right of dog, because there it isnt transparent, but black
+
 const dog = document.getElementById('dog');
-//dog.style.zIndex = 2;
+dog.style.zIndex = -1;
 
 const Engine = Matter.Engine;
 const Render = Matter.Render;
@@ -21,15 +23,15 @@ const render = Render.create({
     }
 });
 
-const dogBody = Bodies.rectangle(100, 100, 100, 100, { inertia: Infinity });
-//dogBody.style.zIndex = 3;
+const dogBody = Bodies.rectangle(100, 100, 100, 100, { inertia: Infinity, render: { visible: false }});
 
 // create rope constraint
 const rope = Constraint.create({
     bodyA: dogBody,
     pointB: { x: window.innerWidth / 2, y: 0 },
     length: window.innerHeight * 0.5,
-    stiffness: 0.15
+    stiffness: 0.15,
+    render: { visible: false }
 });
 
 //rope.style.zIndex = 1;
@@ -43,7 +45,7 @@ const mouseConstraint = MouseConstraint.create(engine, {
     }
 });
 
-World.add(engine.world, [dogBody, rope, mouseConstraint]);
+World.add(engine.world, [dog, dogBody, rope, mouseConstraint]);
 Render.run(render);
 Engine.run(engine);
 
@@ -52,6 +54,7 @@ function update() {
     dog.style.top = dogBody.position.y -50 + 'px';
 
     const ropeElement = document.getElementById('rope');
+    ropeElement.style.zIndex = -2; //rope behind dog
     const deltaY = rope.bodyA.position.y - rope.pointB.y;
     const deltaX = rope.bodyA.position.x - rope.pointB.x;
     const angleInDegrees = (Math.atan2(deltaY, deltaX) * 180 / Math.PI) - 90;
