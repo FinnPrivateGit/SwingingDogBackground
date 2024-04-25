@@ -1,4 +1,3 @@
-//now the rope isnt showing at top right of dog, because there it isnt transparent, but black
 
 const dog = document.getElementById('dog');
 dog.style.zIndex = -1;
@@ -9,7 +8,7 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Mouse = Matter.Mouse;
 const MouseConstraint = Matter.MouseConstraint;
-const Constraint = Matter.Constraint; //not in original code
+const Constraint = Matter.Constraint;
 
 const engine = Engine.create();
 const render = Render.create({
@@ -70,7 +69,3 @@ function update() {
 
 update();
 
-/*
-dog_body is behind dog_png, therefore we cant really click on it
-dog_rope is infront of dog_png, therefore i have to put it behind
-*/
