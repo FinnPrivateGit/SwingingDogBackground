@@ -4,6 +4,7 @@ https://n.ethz.ch/~fdoebele/swingingDog/
 
 plans for the future:  
 -if dog gets grabbed to often -> put a dead dog picture in there and change the text snippet  
+-add a ghost dog?  
 -if dog doesnt gets attention for a long time -> put a starving dog (skeleton) as the picture  
 -get the rope to bend like a real rope  
 -maybe try to do it in 3D
