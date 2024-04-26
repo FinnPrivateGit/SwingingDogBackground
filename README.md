@@ -12,3 +12,7 @@ plans for the future:
 already done:  
 -hanging dog on a rope that can be interacted with  
 -change the black background that it is transparent
+
+setting webpage as wallpaper:
+https://www.thewindowsclub.com/set-webpage-as-desktop-background-in-windows  
+https://docs.wallpaperengine.io/en/scene/first/gettingstarted.html 
