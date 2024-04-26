@@ -10,4 +10,4 @@ plans for the future:
 
 already done:  
 -hanging dog on a rope that can be interacted with  
--change the black background that it is transparent (done)
+-change the black background that it is transparent
